@@ -11,17 +11,18 @@ import {ServiceType} from "./servicetype";
 export class ServiceTypesEffects {
   constructor(private serviceTypesService: ServiceTypesService, private action$: Actions) {}
 
-  GetToDos$: Observable<Action> = createEffect(() =>
+  getServiceTypes: Observable<Action> = createEffect(() =>
     this.action$.pipe(
       ofType(getServiceTypesAction),
       mergeMap(action =>
-        this.serviceTypesService.getServiceTypes().pipe(
-          map((data: ServiceType[]) => {
-            return getServiceTypesSuccessAction({ payload: data });
-          }),
-          catchError((error: Error) => {
-            return of(getServiceTypesErrorAction(error));
-          })
+        this.serviceTypesService.getServiceTypes()
+          .pipe(
+            map((data: ServiceType[]) => {
+              return getServiceTypesSuccessAction({ payload: data });
+            }),
+            catchError((error: Error) => {
+              return of(getServiceTypesErrorAction(error));
+            })
         )
       )
     )

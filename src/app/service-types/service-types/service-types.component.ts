@@ -5,6 +5,7 @@ import ServiceTypeState from "../servicetypestate";
 import {select, Store} from "@ngrx/store";
 import {map} from "rxjs/operators";
 import {getServiceTypesAction} from "../service-types.actions";
+import {ofType} from "@ngrx/effects";
 
 @Component({
   selector: 'app-service-types',
@@ -17,16 +18,16 @@ export class ServiceTypesComponent implements OnInit, OnDestroy {
   serviceTypesSubscription: Subscription;
   serviceTypeList: ServiceType[] = [];
   serviceTypeError: Error = null;
-  constructor(private store: Store<{ serviceTypeState: ServiceTypeState }>) {
-    this.serviceTypes$ = store.pipe(select('serviceTypeState'));
+
+  constructor(private store: Store<{ serviceTypesReducer: ServiceTypeState }>) {
+    this.serviceTypes$ = store.pipe(select('serviceTypesReducer'));
   }
 
   ngOnInit() {
     this.serviceTypesSubscription = this.serviceTypes$
       .pipe(
         map(x => {
-          this.serviceTypeList = x.ServiceTypes;
-          this.serviceTypeError = x.ServiceTypeError;
+          this.serviceTypeList = x.ServiceTypes
         })
       )
       .subscribe();
