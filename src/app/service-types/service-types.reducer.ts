@@ -11,10 +11,11 @@ const _serviceTypesReducer = createReducer(initialState,
   on(getServiceTypesSuccessAction, (state: ServiceTypeState, { payload }) => {
     return { ...state, ServiceTypes: payload, ServiceTypesError: null };
   }),
-  on(getServiceTypesErrorAction, (state: ServiceTypeState, error: Error) => {
+  on(getServiceTypesErrorAction, (error: Error) => {
     // remove below line and use different telemetry logging
     console.error(error);
-    return { ...state, ServiceTypeError: error };
+    return {}
+    // return { ...state, ServiceTypeError: error };
   })
 );
 
