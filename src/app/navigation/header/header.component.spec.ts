@@ -24,14 +24,13 @@ describe('HeaderComponent', () => {
   });
 
   it('should emit sideNavToggle when hamburger menu button is clicked', () => {
-    spyOn(component, 'onToggleSidenav');
+    spyOn(component.sidenavToggle, 'emit');
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
     const button = compiled.querySelector('#toggleNav');
+    button.dispatchEvent(new Event('click'));
 
-    button.click();
-
-    expect(component.onToggleSidenav).toHaveBeenCalled();
+    expect(component.sidenavToggle.emit).toHaveBeenCalled();
   });
 
 });
