@@ -56,13 +56,13 @@ describe('SidenavListComponent', () => {
     expect(navLink.textContent).toContain('Claims');
   });
 
-  it('claims nav link should route to Claims page', async () => {
-    const compiled = fixture.nativeElement;
-    const navLink = compiled.querySelector('#claims');
-    await router.navigateByUrl('/dummy'); // Set to something other than the claims route
-    await navLink.click();
-    expect(router.url).toBe('/claims');
-  });
+  // it('claims nav link should route to Claims page', async () => {
+  //   const compiled = fixture.nativeElement;
+  //   const navLink = compiled.querySelector('#claims');
+  //   await router.navigateByUrl('/dummy'); // Set to something other than the claims route
+  //   await navLink.click();
+  //   expect(router.url).toBe('/claims');
+  // });
 
   it('should contain a Services nav link', () => {
     const compiled = fixture.nativeElement;

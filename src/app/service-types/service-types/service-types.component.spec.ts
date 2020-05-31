@@ -1,4 +1,3 @@
-import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -49,11 +48,12 @@ describe('ServiceTypesComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  afterEach(() => {
+    TestBed.resetTestingModule();
   });
 
   it('Get ServiceTypes Effects - loads data from API', () => {
+
     let nextState: ServiceTypeState = {
       ServiceTypes: [{ id: 1, description: 'FOO',cost: 500}],
       ServiceTypeError: null
@@ -71,7 +71,7 @@ describe('ServiceTypesComponent', () => {
       b: { type: serviceTypeActions.getServiceTypesSuccessAction.type, payload }
     });
 
-    expect(effects.GetToDos$).toBeObservable(expected);
+    expect(effects.getServiceTypes).toBeObservable(expected);
   });
 
 });

@@ -35,7 +35,7 @@ import { ServiceTypesReducer } from './service-types/service-types.reducer';
     BrowserAnimationsModule,
     MaterialModule,
     StoreModule.forRoot({ serviceTypesReducer: ServiceTypesReducer }),
-    EffectsModule.forRoot([ServiceTypesEffects])
+    EffectsModule.forRoot([ServiceTypesEffects, ])
   ],
   providers: [],
   bootstrap: [AppComponent]

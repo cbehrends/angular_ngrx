@@ -5,7 +5,6 @@ import ServiceTypeState from "../servicetypestate";
 import {select, Store} from "@ngrx/store";
 import {map} from "rxjs/operators";
 import {getServiceTypesAction} from "../service-types.actions";
-import {ofType} from "@ngrx/effects";
 
 @Component({
   selector: 'app-service-types',

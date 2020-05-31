@@ -1,4 +1,4 @@
-import {createAction, props} from '@ngrx/store';
+import {createAction, props, union} from '@ngrx/store';
 import {ServiceType} from "./servicetype";
 
 export const getServiceTypesAction = createAction(
@@ -6,11 +6,20 @@ export const getServiceTypesAction = createAction(
 );
 
 export const getServiceTypesSuccessAction = createAction(
-  '[ServiceTypes Component] GetServiceTypes Success',
+  '[ServiceTypes Component] GetServiceTypes - Success',
       props<{ payload: ServiceType[] }>()
 );
 
-export const getServiceTypesErrorAction = createAction('[ToDo] - Error', props<Error>());
+export const getServiceTypesErrorAction = createAction(
+  '[ServiceTypes Component] GetServiceTypes - Error',
+  props<{ payload: Error }>()
+);
 
-// export const decrement = createAction('[ServiceTypes Component] Decrement');
-// export const reset = createAction('[ServiceTypes Component] Reset');
+
+const allActions = union({
+  getServiceTypesAction,
+  getServiceTypesSuccessAction,
+  getServiceTypesErrorAction
+})
+
+export type AllServiceTypeActions = typeof allActions;
