@@ -3,6 +3,9 @@
     <h3>
       Services Offered
     </h3>
+    <div>
+
+    </div>
 <!--    <div>-->
 <!--      <mat-form-field floatLabel="always">-->
 <!--        <mat-label>New Service name</mat-label>-->
@@ -32,20 +35,23 @@
 <!--        Add Service-->
 <!--      </button>-->
 <!--    </div>-->
-    <mat-list>
-      <mat-list-item id='serviceList' *ngFor="let service of serviceTypeList">
-        <div class="list-item-container">
+    <div class="todo-list-wrapper" *ngIf="(serviceTypeList$ | async) as serviceTypes">
+      <mat-list>
+        <mat-list-item id='serviceList' *ngFor="let service of serviceTypes">
           <div class="list-item-container">
-            <span>{{service.description}}</span>
-            <span>Cost: ${{ service.cost | number:'.2' }}</span>
+            <div class="list-item-container">
+              <span>{{service.description}}</span>
+              <span>Cost: ${{ service.cost | number:'.2' }}</span>
+            </div>
+            <!--          <div class="tool-box">-->
+            <!--            <button mat-icon-button matTooltip="Delete" (click)="confirmDialog(service.id)">-->
+            <!--              <mat-icon class="material-icons-outlined delete-button">delete</mat-icon>-->
+            <!--            </button>-->
+            <!--          </div>-->
           </div>
-          <div class="tool-box">
-<!--            <button mat-icon-button matTooltip="Delete" (click)="confirmDialog(service.id)">-->
-<!--              <mat-icon class="material-icons-outlined delete-button">delete</mat-icon>-->
-<!--            </button>-->
-          </div>
-        </div>
-      </mat-list-item>
-    </mat-list>
+        </mat-list-item>
+      </mat-list>
+    </div>
+
   </div>
 </section>

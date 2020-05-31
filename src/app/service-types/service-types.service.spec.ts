@@ -59,4 +59,33 @@ describe('ServiceTypesService', () => {
     req.flush(errorResp, { status: errorResp.status, statusText: errorResp.statusText});
   });
 
+  it('should add service', () => {
+
+    const dummyService = new ServiceType('FOO', 500);
+
+    service.addService('FOO', 500).subscribe(retVal => {
+      expect(retVal).toBe(dummyService);
+    });
+
+    const req = httpMock.expectOne('http://localhost:5000/services');
+    expect(req.request.method).toEqual('POST');
+
+    req.flush(dummyService);
+  });
+
+  it('should handle errors when adding new service', () => {
+
+    service.addService('FOO', 500).subscribe(
+      data => fail(errorResp),
+      (error: Error) => {
+        expect(error.message).toBeTruthy();
+      }
+    );
+
+    const req = httpMock.expectOne('http://localhost:5000/services');
+    expect(req.request.method).toEqual('POST');
+
+    req.flush(errorResp, { status: errorResp.status, statusText: errorResp.statusText});
+  });
+
 });

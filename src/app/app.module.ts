@@ -16,6 +16,7 @@ import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import {ServiceTypesEffects} from './service-types/service-types-effects';
 import { ServiceTypesReducer } from './service-types/service-types.reducer';
+import {ServiceTypesModule} from "./service-types/service-types.module";
 @NgModule({
 
   declarations: [
@@ -30,12 +31,13 @@ import { ServiceTypesReducer } from './service-types/service-types.reducer';
     BrowserModule,
     HttpClientModule,
     RoutingModule,
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule,
     BrowserAnimationsModule,
     MaterialModule,
-    StoreModule.forRoot({ serviceTypesReducer: ServiceTypesReducer }),
-    EffectsModule.forRoot([ServiceTypesEffects, ])
+    ServiceTypesModule,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent]

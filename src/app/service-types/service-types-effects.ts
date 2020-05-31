@@ -4,24 +4,24 @@ import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import {ServiceTypesService} from "./service-types.service";
-import {getServiceTypesAction, getServiceTypesSuccessAction, getServiceTypesErrorAction, AllServiceTypeActions} from "./service-types.actions";
+import {GetServiceTypesAction, GetServiceTypesSuccessAction, GetServiceTypesErrorAction, AllServiceTypeActions} from "./service-types.actions";
 import {ServiceType} from "./servicetype";
 
 @Injectable()
 export class ServiceTypesEffects {
   constructor(private serviceTypesService: ServiceTypesService, private action$: Actions) {}
 
-  getServiceTypes: Observable<any> = createEffect(() =>
+  getServiceTypes: Observable<AllServiceTypeActions> = createEffect(() =>
     this.action$.pipe(
-      ofType(getServiceTypesAction),
+      ofType(GetServiceTypesAction),
       mergeMap(action =>
         this.serviceTypesService.getServiceTypes()
           .pipe(
             map((data: ServiceType[]) => {
-              return getServiceTypesSuccessAction({ payload: data });
+              return GetServiceTypesSuccessAction({ payload: data });
             }),
             catchError((error: Error) => {
-              return of(getServiceTypesErrorAction({payload: error}));
+              return of(GetServiceTypesErrorAction({payload: error}));
             })
         )
       )

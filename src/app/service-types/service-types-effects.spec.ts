@@ -6,9 +6,9 @@ import { provideMockStore } from '@ngrx/store/testing';
 
 import { ServiceTypesEffects } from './service-types-effects';
 import * as fromActions from './service-types.actions';
-import {AllServiceTypeActions, getServiceTypesAction, getServiceTypesErrorAction} from './service-types.actions';
+import {AllServiceTypeActions, GetServiceTypesAction, GetServiceTypesErrorAction} from './service-types.actions';
 import { ServiceTypesService } from './service-types.service';
-import {getServiceTypesSuccessAction} from "./service-types.actions";
+import {GetServiceTypesSuccessAction} from "./service-types.actions";
 import {Actions, ofType} from "@ngrx/effects";
 import {ServiceType} from "./servicetype";
 import {cold, hot} from "jasmine-marbles";
@@ -41,8 +41,8 @@ describe('ServiceTypesEffects', () => {
   it('should dispatch GetServiceTypes Success action ', () => {
 
     const serviceTypeList: ServiceType[] = [{id: 1, description: 'FOo', cost: 100 }];
-    const action = getServiceTypesAction();
-    const completion = getServiceTypesSuccessAction({payload: serviceTypeList});
+    const action = GetServiceTypesAction();
+    const completion = GetServiceTypesSuccessAction({payload: serviceTypeList});
 
     actions$ = hot('-a', {a: action});
     const response = cold('-a|', {a: serviceTypeList});
@@ -55,9 +55,9 @@ describe('ServiceTypesEffects', () => {
 
   it('should dispatch GetServiceTypesErrorAction', () => {
 
-    const action = getServiceTypesAction();
+    const action = GetServiceTypesAction();
     const error = new Error('BOOM');
-    const completion = getServiceTypesErrorAction({payload: error});
+    const completion = GetServiceTypesErrorAction({payload: error});
 
     actions$ = hot('-a|', {a: action});
     const response = cold('-#|', {}, error);

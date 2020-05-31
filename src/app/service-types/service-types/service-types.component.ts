@@ -1,42 +1,32 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ServiceType} from "../servicetype";
-import {Observable, Subscription} from "rxjs";
-import ServiceTypeState from "../servicetypestate";
-import {select, Store} from "@ngrx/store";
-import {map} from "rxjs/operators";
-import {getServiceTypesAction} from "../service-types.actions";
+import {Component, OnInit} from '@angular/core';
+import {ServiceTypesActions} from "../service-types.actions";
+import {ServiceTypesSelectors} from "../service-types-selectors";
 
 @Component({
   selector: 'app-service-types',
   templateUrl: './service-types.component.html',
   styleUrls: ['./service-types.component.css']
 })
-export class ServiceTypesComponent implements OnInit, OnDestroy {
+export class ServiceTypesComponent implements OnInit {
 
-  serviceTypes$: Observable<ServiceTypeState>;
-  serviceTypesSubscription: Subscription;
-  serviceTypeList: ServiceType[] = [];
-  serviceTypeError: Error = null;
+  serviceTypeList$ = this.selectors.getServiceTypes();
 
-  constructor(private store: Store<{ serviceTypesReducer: ServiceTypeState }>) {
-    this.serviceTypes$ = store.pipe(select('serviceTypesReducer'));
+  constructor(private actions: ServiceTypesActions, private selectors: ServiceTypesSelectors) {
+
   }
 
   ngOnInit() {
-    this.serviceTypesSubscription = this.serviceTypes$
-      .pipe(
-        map(x => {
-          this.serviceTypeList = x.ServiceTypes
-        })
-      )
-      .subscribe();
-
-    this.store.dispatch(getServiceTypesAction());
+    this.getServices();
   }
 
-  ngOnDestroy() {
-    if (this.serviceTypesSubscription) {
-      this.serviceTypesSubscription.unsubscribe();
-    }
+  public getServices() {
+
+    this.actions.serviceTypesList();
+    // this.store.dispatch(GetServiceTypesAction());
   }
+
+  public AddService(){
+
+  }
+
 }

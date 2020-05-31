@@ -8,10 +8,14 @@ import {ServiceType} from './servicetype';
 })
 export class ServiceTypesService {
 
-  private ApiURL: string = 'http://localhost:5000/services';
+  private _apiUrl: string = 'http://localhost:5000/services';
   constructor(private httpClient: HttpClient) {}
 
   getServiceTypes(): Observable<ServiceType[]> {
-    return this.httpClient.get<ServiceType[]>(this.ApiURL);
+    return this.httpClient.get<ServiceType[]>(this._apiUrl);
+  }
+
+  addService(description: string, cost: number): any{
+    return this.httpClient.post(this._apiUrl, {description, cost});
   }
 }

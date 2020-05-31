@@ -1,5 +1,5 @@
 import {Action, createReducer, on} from '@ngrx/store';
-import {getServiceTypesAction, getServiceTypesSuccessAction, getServiceTypesErrorAction} from './service-types.actions';
+import {GetServiceTypesAction, GetServiceTypesSuccessAction, GetServiceTypesErrorAction} from './service-types.actions';
 import {ServiceType} from "./servicetype";
 import ServiceTypeState, {initializeState} from "./servicetypestate";
 
@@ -7,11 +7,11 @@ const initialState = initializeState();
 
 
 const _serviceTypesReducer = createReducer(initialState,
-  on(getServiceTypesAction, state => state),
-  on(getServiceTypesSuccessAction, (state: ServiceTypeState, { payload }) => {
+  on(GetServiceTypesAction, state => state),
+  on(GetServiceTypesSuccessAction, (state: ServiceTypeState, { payload }) => {
     return { ...state, ServiceTypes: payload, ServiceTypesError: null };
   }),
-  on(getServiceTypesErrorAction, (error: Error) => {
+  on(GetServiceTypesErrorAction, (error: Error) => {
     // remove below line and use different telemetry logging
     console.error(error);
     return {}

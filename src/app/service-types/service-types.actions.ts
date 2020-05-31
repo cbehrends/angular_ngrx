@@ -1,25 +1,37 @@
-import {createAction, props, union} from '@ngrx/store';
+import {createAction, props, Store, union} from '@ngrx/store';
 import {ServiceType} from "./servicetype";
+import ServiceTypeState from "./servicetypestate";
+import {Injectable} from "@angular/core";
 
-export const getServiceTypesAction = createAction(
+export const GetServiceTypesAction = createAction(
   '[ServiceTypes Component] GetServiceTypes',
 );
 
-export const getServiceTypesSuccessAction = createAction(
+export const GetServiceTypesSuccessAction = createAction(
   '[ServiceTypes Component] GetServiceTypes - Success',
       props<{ payload: ServiceType[] }>()
 );
 
-export const getServiceTypesErrorAction = createAction(
+export const GetServiceTypesErrorAction = createAction(
   '[ServiceTypes Component] GetServiceTypes - Error',
   props<{ payload: Error }>()
 );
 
 
+@Injectable({ providedIn: 'root' })
+export class ServiceTypesActions {
+  constructor(private store: Store<ServiceTypeState>) {}
+
+  public serviceTypesList(): void {
+    this.store.dispatch(GetServiceTypesAction());
+  }
+
+}
+
 const allActions = union({
-  getServiceTypesAction,
-  getServiceTypesSuccessAction,
-  getServiceTypesErrorAction
+  GetServiceTypesAction: GetServiceTypesAction,
+  GetServiceTypesSuccessAction: GetServiceTypesSuccessAction,
+  SetServiceTypesErrorAction: GetServiceTypesErrorAction
 })
 
 export type AllServiceTypeActions = typeof allActions;
