@@ -11,22 +11,17 @@ export class ServiceTypesComponent implements OnInit {
 
   serviceTypeList$ = this.selectors.getServiceTypes();
 
-  constructor(private actions: ServiceTypesActions, private selectors: ServiceTypesSelectors) {
-
-  }
+  constructor(private actions: ServiceTypesActions, private selectors: ServiceTypesSelectors) {}
 
   ngOnInit() {
     this.getServices();
   }
 
   public getServices() {
-
     this.actions.serviceTypesList();
-    // this.store.dispatch(GetServiceTypesAction());
   }
-
-  public AddService(){
-
-  }
-
+  //
+  // public deleteService(id: number){
+  //   console.log(id);
+  // }
 }

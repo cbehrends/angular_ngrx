@@ -1,23 +1,16 @@
-import {from, Observable, of} from 'rxjs';
-import { Action } from '@ngrx/store';
 import { TestBed, async } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { provideMockStore } from '@ngrx/store/testing';
-
 import { ServiceTypesEffects } from './service-types-effects';
-import * as fromActions from './service-types.actions';
 import {AllServiceTypeActions, GetServiceTypesAction, GetServiceTypesErrorAction} from './service-types.actions';
 import { ServiceTypesService } from './service-types.service';
 import {GetServiceTypesSuccessAction} from "./service-types.actions";
 import {Actions, ofType} from "@ngrx/effects";
 import {ServiceType} from "./servicetype";
 import {cold, hot} from "jasmine-marbles";
-import {map} from "rxjs/operators";
-
 
 describe('ServiceTypesEffects', () => {
   let actions$: Actions<AllServiceTypeActions>;
-  let actions: Observable<any>;
   let effects: ServiceTypesEffects;
   let dataService;
 
