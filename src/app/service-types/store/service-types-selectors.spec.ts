@@ -1,6 +1,6 @@
-import {ServiceType} from "./servicetype";
+import {ServiceType} from "./service-type";
 import { Store } from '@ngrx/store';
-import ServiceTypeState from './servicetypestate';
+import ServiceTypeState from './service-type-state';
 import {getServiceTypeState, ServiceTypesSelectors, serviceTypesSelectorsFn} from './service-types-selectors'
 import {ServiceTypesEffects} from "./service-types-effects";
 

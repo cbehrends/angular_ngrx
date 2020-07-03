@@ -43,11 +43,11 @@
               <span>{{service.description}}</span>
               <span>Cost: ${{ service.cost | number:'.2' }}</span>
             </div>
-<!--            <div class="tool-box">-->
-<!--              <button mat-icon-button matTooltip="Delete" (click)="confirmDialog(service.id)">-->
-<!--                <mat-icon class="material-icons-outlined delete-button">delete</mat-icon>-->
-<!--              </button>-->
-<!--            </div>-->
+            <div class="tool-box">
+              <button mat-icon-button matTooltip="Delete" (click)="deleteService(service.id)">
+                <mat-icon class="material-icons-outlined delete-button">delete</mat-icon>
+              </button>
+            </div>
           </div>
         </mat-list-item>
       </mat-list>

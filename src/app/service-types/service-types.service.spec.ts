@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import { ServiceTypesService } from './service-types.service';
-import {ServiceType} from "./servicetype";
-import {HttpErrorResponse} from "@angular/common/http";
+import {ServiceType} from "./store/service-type";
+import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
 
 const fakeServices = [
   {id: 1, description: 'Test'} as ServiceType,
@@ -86,6 +86,18 @@ describe('ServiceTypesService', () => {
     expect(req.request.method).toEqual('POST');
 
     req.flush(errorResp, { status: errorResp.status, statusText: errorResp.statusText});
+  });
+
+  it('should delete service', () => {
+
+    service.deleteService(1).subscribe(retVal => {
+      expect(retVal).toBeTruthy();
+    });
+
+    const req = httpMock.expectOne('http://localhost:5000/services/1');
+    expect(req.request.method).toEqual('DELETE');
+
+    req.flush(new HttpResponse({status: 200}));
   });
 
 });

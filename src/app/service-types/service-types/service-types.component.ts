@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ServiceTypesActions} from "../service-types.actions";
-import {ServiceTypesSelectors} from "../service-types-selectors";
+import {ServiceTypesActions} from "../store/service-types.actions";
+import {ServiceTypesSelectors} from "../store/service-types-selectors";
 
 @Component({
   selector: 'app-service-types',
@@ -20,8 +20,8 @@ export class ServiceTypesComponent implements OnInit {
   public getServices() {
     this.actions.serviceTypesList();
   }
-  //
-  // public deleteService(id: number){
-  //   console.log(id);
-  // }
+
+  public deleteService(id: number){
+    this.actions.delete(id);
+  }
 }

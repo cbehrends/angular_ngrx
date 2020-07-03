@@ -1,4 +1,4 @@
-import {ServiceType} from "./servicetype";
+import {ServiceType} from "./service-type";
 
 export default class ServiceTypeState {
   ServiceTypes: Array<ServiceType>;

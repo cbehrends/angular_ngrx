@@ -2,12 +2,18 @@ import { TestBed, async } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 import { ServiceTypesEffects } from './service-types-effects';
-import {AllServiceTypeActions, GetServiceTypesAction, GetServiceTypesErrorAction} from './service-types.actions';
-import { ServiceTypesService } from './service-types.service';
+import {
+  AllServiceTypeActions, DeleteServiceTypeErrorAction,
+  DeleteServiceTypeAction, DeleteServiceTypeSuccessAction,
+  GetServiceTypesAction,
+  GetServiceTypesErrorAction
+} from './service-types.actions';
+import { ServiceTypesService } from '../service-types.service';
 import {GetServiceTypesSuccessAction} from "./service-types.actions";
 import {Actions, ofType} from "@ngrx/effects";
-import {ServiceType} from "./servicetype";
+import {ServiceType} from "./service-type";
 import {cold, hot} from "jasmine-marbles";
+import {HttpResponse} from "@angular/common/http";
 
 describe('ServiceTypesEffects', () => {
   let actions$: Actions<AllServiceTypeActions>;
@@ -22,7 +28,7 @@ describe('ServiceTypesEffects', () => {
         provideMockActions(() => actions$),
         {
           provide: ServiceTypesService,
-          useValue: jasmine.createSpyObj('ServiceTypesService', ['getServiceTypes'])
+          useValue: jasmine.createSpyObj('ServiceTypesService', ['getServiceTypes', 'deleteService'])
         }
       ],
     });
@@ -50,7 +56,7 @@ describe('ServiceTypesEffects', () => {
 
     const action = GetServiceTypesAction();
     const error = new Error('BOOM');
-    const completion = GetServiceTypesErrorAction({payload: error});
+    const completion = GetServiceTypesErrorAction({error: error});
 
     actions$ = hot('-a|', {a: action});
     const response = cold('-#|', {}, error);
@@ -60,6 +66,40 @@ describe('ServiceTypesEffects', () => {
     const expected = cold('--(b|)', {b: completion});
 
     expect(effects.getServiceTypes).toBeObservable(expected);
+
+  });
+
+  it('should dispatch DeleteServiceType Success action ', () => {
+
+    const action = DeleteServiceTypeAction({id: 1});
+    const completion = DeleteServiceTypeSuccessAction();
+
+    actions$ = hot('-a', {a: action});
+
+    const response = cold('-a|', {a: DeleteServiceTypeSuccessAction()});
+
+    dataService.deleteService.and.returnValue(response);
+
+    const expected = cold('--b', { b: completion });
+
+    expect(effects.deleteServiceType).toBeObservable(expected);
+
+  });
+
+  it('should dispatch DeleteServiceTypeErrorAction', () => {
+
+    const action = DeleteServiceTypeAction({id: 1});
+    const error = new Error('BOOM');
+    const completion = DeleteServiceTypeErrorAction({error: error});
+
+    actions$ = hot('-a|', {a: action});
+    const response = cold('-#|', {}, error);
+
+    dataService.deleteService.and.returnValue(response);
+
+    const expected = cold('--(b|)', {b: completion});
+
+    expect(effects.deleteServiceType).toBeObservable(expected);
 
   });
 });

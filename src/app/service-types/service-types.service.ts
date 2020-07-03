@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {ServiceType} from './servicetype';
+import {ServiceType} from './store/service-type';
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +17,9 @@ export class ServiceTypesService {
 
   addService(description: string, cost: number): any{
     return this.httpClient.post(this._apiUrl, {description, cost});
+  }
+
+  deleteService(id: number): Observable<any> {
+    return this.httpClient.delete(this._apiUrl + '/' + id);
   }
 }

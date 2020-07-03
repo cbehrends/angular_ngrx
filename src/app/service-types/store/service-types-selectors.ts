@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { createFeatureSelector, createSelector, Store } from '@ngrx/store';
-import ServiceTypeState from './servicetypestate';
+import ServiceTypeState from './service-type-state';
 
 export const getServiceTypeState = createFeatureSelector<ServiceTypeState>('ServiceTypes');
 
@@ -19,4 +19,5 @@ export class ServiceTypesSelectors {
   public getServiceTypes() {
     return this.store.select(serviceTypesSelectorsFn);
   }
+
 }
