@@ -1,6 +1,5 @@
 import {
   DeleteServiceTypeErrorAction,
-  DeleteServiceTypeAction, DeleteServiceTypeSuccessAction,
   GetServiceTypesAction,
   GetServiceTypesErrorAction,
   GetServiceTypesSuccessAction
@@ -10,7 +9,7 @@ import {Action} from "@ngrx/store";
 import {initializeState} from "./service-type-state";
 import {ServiceType} from "./service-type";
 
-describe('service types reducer', () => {
+describe('Service Types reducer', () => {
   it('should return default state', () => {
     const newState = ServiceTypesReducer(undefined, {} as Action);
     const initialState = initializeState();

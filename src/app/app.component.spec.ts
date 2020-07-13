@@ -2,7 +2,7 @@ import { TestBed, async } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
 
-describe('AppComponent', () => {
+describe('App Component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -17,9 +17,9 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'AngularUI'`, () => {
+  it('should have app-layout', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('AngularUI');
+
+    expect(fixture.nativeElement.querySelector('app-layout')).not.toBeNull();
   });
 });

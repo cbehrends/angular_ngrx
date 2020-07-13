@@ -15,7 +15,7 @@ import {ServiceType} from "./service-type";
 import {cold, hot} from "jasmine-marbles";
 import {HttpResponse} from "@angular/common/http";
 
-describe('ServiceTypesEffects', () => {
+describe('Service Types Effects', () => {
   let actions$: Actions<AllServiceTypeActions>;
   let effects: ServiceTypesEffects;
   let dataService;

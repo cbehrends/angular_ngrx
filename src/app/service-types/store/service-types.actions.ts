@@ -2,7 +2,6 @@ import {createAction, props, Store, union} from '@ngrx/store';
 import {ServiceType} from "./service-type";
 import ServiceTypeState from "./service-type-state";
 import {Injectable} from "@angular/core";
-import {formatNumber} from "@angular/common";
 
 export const GetServiceTypesAction = createAction(
   '[ServiceTypes Component] GetServiceTypes',

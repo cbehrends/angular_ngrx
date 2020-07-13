@@ -13,7 +13,7 @@ const testUrl = 'http://localhost:5000/services';
 
 const errorResp = new HttpErrorResponse({status: 500, statusText: 'BOOM', url: testUrl});
 
-describe('ServiceTypesService', () => {
+describe('Service Types Service', () => {
   let service: ServiceTypesService;
   let httpMock: HttpTestingController;
   beforeEach(() => {

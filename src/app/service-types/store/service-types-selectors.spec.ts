@@ -4,7 +4,7 @@ import ServiceTypeState from './service-type-state';
 import {getServiceTypeState, ServiceTypesSelectors, serviceTypesSelectorsFn} from './service-types-selectors'
 import {ServiceTypesEffects} from "./service-types-effects";
 
-describe('ServiceTypesSelector', () => {
+describe('Service Types Selector', () => {
   describe('getServiceTypes', () => {
     it('should return the service types list', () => {
       const serviceTypes = [new ServiceType('Foo', 500)];

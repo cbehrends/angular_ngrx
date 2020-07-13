@@ -3,7 +3,7 @@ import { SidenavListComponent } from './sidenav-list.component';
 import {RouterTestingModule} from '@angular/router/testing';
 import {Router} from '@angular/router';
 
-describe('SidenavListComponent', () => {
+describe('SidenavList Component', () => {
   let component: SidenavListComponent;
   let fixture: ComponentFixture<SidenavListComponent>;
   let router: Router;
@@ -49,20 +49,6 @@ describe('SidenavListComponent', () => {
     await navLink.click();
     expect(router.url).toBe('/');
   });
-
-  it('should contain a Claims nav link', () => {
-    const compiled = fixture.nativeElement;
-    const navLink = compiled.querySelector('#claims');
-    expect(navLink.textContent).toContain('Claims');
-  });
-
-  // it('claims nav link should route to Claims page', async () => {
-  //   const compiled = fixture.nativeElement;
-  //   const navLink = compiled.querySelector('#claims');
-  //   await router.navigateByUrl('/dummy'); // Set to something other than the claims route
-  //   await navLink.click();
-  //   expect(router.url).toBe('/claims');
-  // });
 
   it('should contain a Services nav link', () => {
     const compiled = fixture.nativeElement;

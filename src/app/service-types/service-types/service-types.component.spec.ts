@@ -6,7 +6,7 @@ import {ServiceType} from "../store/service-type";
 import { Store } from '@ngrx/store';
 import {ServiceTypesSelectors} from "../store/service-types-selectors";
 import {of} from "rxjs";
-describe('ServiceTypesComponent', () => {
+describe('Service Types Component', () => {
   let component: ServiceTypesComponent;
   let fixture: ComponentFixture<ServiceTypesComponent>;
   let actions: any;

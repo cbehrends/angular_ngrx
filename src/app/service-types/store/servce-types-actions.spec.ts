@@ -2,7 +2,7 @@ import { Store } from '@ngrx/store';
 import {ServiceTypesActions} from './service-types.actions';
 import ServiceTypeState from "./service-type-state";
 
-describe('ServiceTypes actions', () => {
+describe('Service Types actions', () => {
   describe('serviceTypesList', () => {
     it('should dispatch GetServiceTypes action', () => {
       const expectedAction = { type: '[ServiceTypes Component] GetServiceTypes' };
