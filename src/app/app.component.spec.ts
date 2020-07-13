@@ -19,7 +19,6 @@ describe('App Component', () => {
 
   it('should have app-layout', () => {
     const fixture = TestBed.createComponent(AppComponent);
-
     expect(fixture.nativeElement.querySelector('app-layout')).not.toBeNull();
   });
 });
