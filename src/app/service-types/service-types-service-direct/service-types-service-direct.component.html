@@ -2,7 +2,7 @@
   <h3>
     Services Offered
   </h3>
-  <div *ngIf="(serviceTypeList$ | async) as serviceTypes">
+  <div *ngIf="ServiceTypes as serviceTypes">
     <mat-list>
       <mat-list-item id='serviceList' *ngFor="let service of serviceTypes">
         <div class="list-item-container">

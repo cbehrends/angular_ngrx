@@ -18,10 +18,6 @@ describe('Home Component', () => {
     fixture.detectChanges();
   });
 
-  it('should create new Home component instance', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should have an H2 tag that says Angular TDD Home Page!', () => {
     const fixture = TestBed.createComponent(HomeComponent);
     expect(fixture.nativeElement.querySelector('h2')).not.toBeNull();

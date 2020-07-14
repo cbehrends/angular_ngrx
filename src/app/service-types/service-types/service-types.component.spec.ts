@@ -3,9 +3,9 @@ import { ServiceTypesService } from '../service-types.service';
 import { ServiceTypesComponent} from "./service-types.component";
 import { ServiceTypesActions} from '../store/service-types.actions';
 import {ServiceType} from "../store/service-type";
-import { Store } from '@ngrx/store';
 import {ServiceTypesSelectors} from "../store/service-types-selectors";
 import {of} from "rxjs";
+
 describe('Service Types Component', () => {
   let component: ServiceTypesComponent;
   let fixture: ComponentFixture<ServiceTypesComponent>;
@@ -13,9 +13,11 @@ describe('Service Types Component', () => {
   beforeEach(async(() => {
     const serviceType = new ServiceType('FOo', 500);
     const serviceTypesList = [serviceType, new ServiceType('Bar', 400)];
+
     actions = jasmine.createSpyObj('ServiceTypesActions', ['serviceTypesList', 'delete'])
     actions.serviceTypesList.and.returnValue(serviceTypesList);
     actions.delete.and.callThrough()
+
     TestBed.configureTestingModule({
       declarations: [ServiceTypesComponent],
       imports: [],
@@ -27,9 +29,6 @@ describe('Service Types Component', () => {
         {
           provide: ServiceTypesActions,
           useValue: actions
-          // useValue: {
-          //   serviceTypesList: () => {}
-          // }
         },
         {
           provide: ServiceTypesSelectors,

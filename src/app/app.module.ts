@@ -15,6 +15,8 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import {ServiceTypesModule} from "./service-types/store/service-types.module";
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { ServiceTypesServiceDirectComponent } from './service-types/service-types-service-direct/service-types-service-direct.component';
 
 @NgModule({
 
@@ -25,6 +27,7 @@ import {ServiceTypesModule} from "./service-types/store/service-types.module";
     HeaderComponent,
     SidenavListComponent,
     HomeComponent,
+    ServiceTypesServiceDirectComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ import {ServiceTypesModule} from "./service-types/store/service-types.module";
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreRouterConnectingModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -18,15 +18,10 @@ describe('Service Types Service', () => {
   let httpMock: HttpTestingController;
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ServiceTypesService],
       imports: [HttpClientTestingModule]
     });
     service = TestBed.inject(ServiceTypesService);
     httpMock = TestBed.inject(HttpTestingController);
-  });
-
-  it('should be created', () => {
-    expect(service).toBeTruthy();
   });
 
   it('should fetch services', () => {
@@ -76,7 +71,7 @@ describe('Service Types Service', () => {
   it('should handle errors when adding new service', () => {
 
     service.addService('FOO', 500).subscribe(
-      data => fail(errorResp),
+      () => fail(errorResp),
       (error: Error) => {
         expect(error.message).toBeTruthy();
       }

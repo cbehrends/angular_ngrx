@@ -9,6 +9,7 @@ import {ServiceType} from './store/service-type';
 export class ServiceTypesService {
 
   private _apiUrl: string = 'http://localhost:5000/services';
+
   constructor(private httpClient: HttpClient) {}
 
   getServiceTypes(): Observable<ServiceType[]> {
